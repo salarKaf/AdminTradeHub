@@ -1,16 +1,33 @@
 import React, { useState } from 'react';
 import { User, Lock, Eye, EyeOff } from 'lucide-react';
+import { useNavigate } from "react-router-dom";
+import { loginAdmin } from "../API/auth.jsx";
 
 const LoginPage = () => {
-    const [email, setEmail] = useState('admin@gmail.com');
+    const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
     const [showPassword, setShowPassword] = useState(false);
+    const navigate = useNavigate();
 
-    const handleSubmit = (e) => {
+    const handleSubmit = async (e) => {
         e.preventDefault();
-        console.log('Login attempt:', { email, password });
-        // اینجا منطق لاگین رو پیاده‌سازی کن
+        try {
+            console.log("Trying to login with:", email, password);
+
+            const data = await loginAdmin(email, password);
+            console.log("Login success:", data);
+
+            // مثلاً توکن رو ذخیره کن
+            localStorage.setItem("admin", data.access_token);
+
+            // بعد می‌تونی ریدایرکت کنی
+            navigate('/dashboard');
+        } catch (error) {
+            console.error("Login failed:", error.response?.data?.detail || error.message);
+        }
+
     };
+
 
     return (
         <div className="min-h-screen flex items-center justify-center relative overflow-hidden">
