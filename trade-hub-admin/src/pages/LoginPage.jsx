@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import { User, Lock, Eye, EyeOff } from 'lucide-react';
 import { useNavigate } from "react-router-dom";
 import { loginAdmin } from "../API/auth.jsx";
+import { Loader2 } from 'lucide-react'; // آیکون لودر
 
 const LoginPage = () => {
     const [email, setEmail] = useState('');
@@ -9,24 +10,30 @@ const LoginPage = () => {
     const [showPassword, setShowPassword] = useState(false);
     const navigate = useNavigate();
 
+    const [errorMessage, setErrorMessage] = useState('');
+
+    const [loading, setLoading] = useState(false); // اضافه کن بالا
+
     const handleSubmit = async (e) => {
         e.preventDefault();
+        setLoading(true);
+        setErrorMessage(''); // پاک کردن پیام قبلی
         try {
-            console.log("Trying to login with:", email, password);
-
             const data = await loginAdmin(email, password);
-            console.log("Login success:", data);
-
-            // مثلاً توکن رو ذخیره کن
             localStorage.setItem("admin", data.access_token);
-
-            // بعد می‌تونی ریدایرکت کنی
             navigate('/dashboard');
         } catch (error) {
-            console.error("Login failed:", error.response?.data?.detail || error.message);
+            const message = error.response?.data?.detail || "مشکلی در ورود پیش آمد.";
+            setErrorMessage(message);
+            console.error("Login failed:", message);
+        } finally {
+            setLoading(false);
         }
-
     };
+
+
+
+
 
 
     return (
@@ -112,14 +119,29 @@ const LoginPage = () => {
 
                                 </button>
                             </div>
+                            {errorMessage && (
+                                <div className="text-red-400 bg-red-500/10 border border-red-400 rounded-md p-3 text-sm text-center">
+                                    {errorMessage}
+                                </div>
+                            )}
 
                             {/* Login Button */}
                             <button
                                 type="submit"
-                                className="w-6/12  bg-gradient-to-r from-yellow-400 to-yellow-500 hover:from-yellow-500 hover:to-yellow-600 text-gray-900 font-bold py-3 px-4 rounded-3xl transition-all duration-200 transform hover:scale-105 shadow-lg hover:shadow-xl"
+                                disabled={loading}
+                                className={`w-6/12 mx-auto flex justify-center items-center gap-2 bg-gradient-to-r from-yellow-400 to-yellow-500 hover:from-yellow-500 hover:to-yellow-600 text-gray-900 font-bold py-3 px-4 rounded-3xl transition-all duration-200 transform hover:scale-105 shadow-lg hover:shadow-xl ${loading ? 'opacity-70 cursor-not-allowed' : ''
+                                    }`}
                             >
-                                ورود
+                                {loading ? (
+                                    <>
+                                        <Loader2 className="animate-spin h-5 w-5" />
+                                        در حال ورود...
+                                    </>
+                                ) : (
+                                    "ورود"
+                                )}
                             </button>
+
                         </form>
 
 

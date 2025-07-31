@@ -1,13 +1,12 @@
 import axios from "axios";
-
+import {iamBaseURL} from './api'
 export const loginAdmin = async (username, password) => {
   const params = new URLSearchParams();
   params.append("grant_type", "password");  // اگه سرورت FastAPI OAuth2 باشه این ضروریه
   params.append("username", username);
   params.append("password", password);
 
-  const response = await axios.post(
-    "http://iam.localhost/api/v1/admins/login",
+  const response = await axios.post(`${iamBaseURL}/admins/login`,
     params,
     {
       headers: {
