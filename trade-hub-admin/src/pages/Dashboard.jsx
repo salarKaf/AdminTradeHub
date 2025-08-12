@@ -14,7 +14,7 @@ const Header = () => (
     <div className="flex items-center justify-end ">
       <div className="flex items-center space-x-3">
         <img
-          src="/public/Images/Frame 125.png"
+          src="/Images/Frame 125.png"
           alt="Trade Hub Logo"
           className=" w-64 h-30"
         />
@@ -231,7 +231,7 @@ const DashboardPage = () => {
             <div className="w-full lg:w-1/2 h-48 lg:h-full relative overflow-hidden">
               <div className="absolute inset-0 bg-gradient-to-br from-blue-500/20 to-purple-600/20 z-10"></div>
               <img
-                src="/public/Images/how-to-start-an-online-store-min 1.png"
+                src="/Images/how-to-start-an-online-store-min 1.png"
                 alt="Active Stores"
                 className="w-full h-full object-cover hover:scale-110 transition-transform duration-700"
               />
@@ -307,7 +307,7 @@ const DashboardPage = () => {
             <div className="w-full lg:w-1/2 h-48 lg:h-full relative overflow-hidden">
               <div className="absolute inset-0 bg-gradient-to-br from-orange-500/20 to-pink-600/20 z-10"></div>
               <img
-                src="/public/images/online-shopping-platform-flat-style-illustration-vector-design_538610-1336_11zon 1.png"
+                src="/images/online-shopping-platform-flat-style-illustration-vector-design_538610-1336_11zon 1.png"
                 alt="Users and Stores"
                 className="w-full h-full object-cover hover:scale-110 transition-transform duration-700"
               />
@@ -440,7 +440,7 @@ const DashboardPage = () => {
             <div className="w-full lg:w-1/2 h-48 lg:h-full relative overflow-hidden">
               <div className="absolute inset-0 bg-gradient-to-br from-green-500/20 to-emerald-600/20 z-10"></div>
               <img
-                src="/public/Images/sales-ecommerce 1.png"
+                src="/Images/sales-ecommerce 1.png"
                 alt="Revenue Analytics"
                 className="w-full h-full object-cover hover:scale-110 transition-transform duration-700"
               />

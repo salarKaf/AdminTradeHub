@@ -41,7 +41,7 @@ const LoginPage = () => {
             {/* Background Image with Dark Overlay */}
             <div className="absolute inset-0 z-0">
                 <img
-                    src="/public/Images/why-do-mountains-look-so-small-in-photos-v0-oc095cqy2fnd1 1.png" // مسیر تصویر پس‌زمینه شما
+                    src="/Images/why-do-mountains-look-so-small-in-photos-v0-oc095cqy2fnd1 1.png" // مسیر تصویر پس‌زمینه شما
                     alt="Background"
                     className="w-full h-full object-cover"
                 />
@@ -149,7 +149,7 @@ const LoginPage = () => {
                     {/* Wave Pattern Below Form (Your Custom Image) */}
                     <div className="absolute bottom-0 left-0 right-0   z-10  ">
                         <img
-                            src="/public/Images/layered-waves-haikei 1.png"
+                            src="/Images/layered-waves-haikei 1.png"
                             alt="Wave Pattern"
                             className="w-full opacity-70 object-cover"
                             style={{ height: "100px" }} // اینو خودت می‌تونی تغییر بدی
