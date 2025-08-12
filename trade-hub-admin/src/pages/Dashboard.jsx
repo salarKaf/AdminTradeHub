@@ -2,13 +2,12 @@ import React, { useState } from 'react';
 import { ShoppingCart, Users, Crown, Loader2, TrendingUp, DollarSign, ArrowUp, User, Settings, Download, ChevronDown, Home, BarChart3, Store, UserCheck, Package, CreditCard, Eye, Edit, Trash2, Plus, AlertCircle } from 'lucide-react';
 import { useEffect } from "react";
 import { fetchDashboardStats, fetchUserSellerStats } from "../API/dashboard";
-import { fetchTotalRevenue } from "../API/dashboard"; // حواست باشه ایمپورت کنی
+import { fetchTotalRevenue } from "../API/dashboard"; 
 import { fetchRevenueStats } from "../API/dashboard";
 import { fetchPlanRevenue } from "../API/dashboard";
 import { fetchMonthlyGrowth } from "../API/dashboard";
 import { fetchRevenueTrend } from "../API/dashboard";
 
-// کامپوننت هدر
 const Header = () => (
   <div className="top-0 right-0 left-64 z-40  ">
     <div className="flex items-center justify-end ">
@@ -24,7 +23,6 @@ const Header = () => (
   </div>
 );
 
-// کامپوننت منوی کناری
 const Sidebar = ({ activeMenu, setActiveMenu, menuItems }) => (
   <div className="w-64 h-screen fixed left-0 top-0 z-50">
     <div className="h-full backdrop-blur-2xl bg-white/10 border-r border-white/20 shadow-[0_8px_32px_0_rgba(31,38,135,0.37)]">
@@ -60,7 +58,6 @@ const Sidebar = ({ activeMenu, setActiveMenu, menuItems }) => (
     </div>
   </div>
 );
-// کامپوننت نمودار تعاملی
 const InteractiveChart = ({ trend }) => {
   const [hoveredIndex, setHoveredIndex] = useState(null);
   const [tooltip, setTooltip] = useState({ show: false, x: 0, y: 0, data: null });
@@ -73,12 +70,11 @@ const InteractiveChart = ({ trend }) => {
     );
   }
 
-  // محاسبه ارتفاع ستون‌ها نسبت به ماکزیمم
   const max = Math.max(...trend.values);
   const chartData = trend.labels.map((label, i) => ({
     month: label,
     value: trend.values[i],
-    height: (trend.values[i] / max) * 220, // تا 220 پیکسل
+    height: (trend.values[i] / max) * 220, 
   }));
 
   const handleMouseEnter = (data, event) => {
@@ -146,7 +142,7 @@ const DashboardPage = () => {
         const userSellerData = await fetchUserSellerStats();
         const revenueStatsData = await fetchRevenueStats();
         const planRevenueData = await fetchPlanRevenue();
-        const growth = await fetchMonthlyGrowth(); // 💡 گرفتن درصد رشد
+        const growth = await fetchMonthlyGrowth(); 
         const trendData = await fetchRevenueTrend();
         setRevenueTrend(trendData);
 
@@ -155,7 +151,7 @@ const DashboardPage = () => {
         setRevenueStats(revenueStatsData);
         setPlanRevenue(planRevenueData);
         setTotalRevenue(revenueStatsData.total_revenue);
-        setMonthlyGrowth(growth); // 💡 تنظیم state رشد
+        setMonthlyGrowth(growth); 
       } catch (err) {
         console.error("خطا در دریافت اطلاعات داشبورد:", err);
       }
@@ -222,12 +218,9 @@ const DashboardPage = () => {
 
       </div>
 
-      {/* بخش کارت‌های تصویری بهبود یافته */}
       <div className="mt-8 space-y-6">
-        {/* کارت 1 - آمار فروشگاه‌های فعال */}
         <div className="bg-gradient-to-br from-white/90 to-white/70 backdrop-blur-xl rounded-2xl shadow-xl border border-white/40 overflow-hidden hover:shadow-2xl transition-all duration-500">
           <div className="flex flex-col lg:flex-row h-auto lg:h-80">
-            {/* بخش تصویر - راست */}
             <div className="w-full lg:w-1/2 h-48 lg:h-full relative overflow-hidden">
               <div className="absolute inset-0 bg-gradient-to-br from-blue-500/20 to-purple-600/20 z-10"></div>
               <img
@@ -237,7 +230,6 @@ const DashboardPage = () => {
               />
             </div>
 
-            {/* بخش آمار - چپ */}
             <div className="w-full lg:w-1/2 p-5 flex flex-col justify-center bg-gradient-to-br from-blue-50/50 to-purple-50/30">
               <div className="flex justify-end items-center mb-5">
                 <h3 className="text-xl font-bold text-gray-800">فروشگاه‌های فعال</h3>
@@ -246,7 +238,6 @@ const DashboardPage = () => {
                 </div>
               </div>
 
-              {/* تعداد کل فروشگاه‌های فعال */}
               <div dir='rtl' className="mb-5 mr-6">
                 <div className="text-3xl font-bold bg-gradient-to-r from-blue-600 to-purple-600 bg-clip-text text-transparent mb-1">
                   {stats ? stats.total_active.toLocaleString() : '...'}
@@ -254,9 +245,7 @@ const DashboardPage = () => {
                 <div className="text-gray-600 font-medium text-sm">فروشگاه فعال</div>
               </div>
 
-              {/* آمار پلن‌ها */}
               <div dir="rtl" className="grid grid-cols-2 gap-3">
-                {/* پلن بیسیک */}
                 <div className="bg-gradient-to-r h-28 from-green-50 to-green-100/50 rounded-xl p-3 shadow-md border border-green-200/50 hover:shadow-lg transition-all duration-300 flex items-center">
                   <div className="flex items-center justify-between w-full">
                     <div className="flex items-center">
@@ -276,7 +265,6 @@ const DashboardPage = () => {
                   </div>
                 </div>
 
-                {/* پلن پرو */}
                 <div className="bg-gradient-to-r h-28 from-purple-50 to-purple-100/50 rounded-xl p-3 shadow-md border border-purple-200/50 hover:shadow-lg transition-all duration-300 flex items-center">
                   <div className="flex items-center justify-between w-full">
                     <div className="flex items-center">
@@ -300,10 +288,8 @@ const DashboardPage = () => {
           </div>
         </div>
 
-        {/* کارت 2 - آمار کاربران و فروشگاه‌ها */}
         <div className="bg-gradient-to-br from-white/90 to-white/70 backdrop-blur-xl rounded-2xl shadow-xl border border-white/40 overflow-hidden hover:shadow-2xl transition-all duration-500">
           <div className="flex flex-col lg:flex-row h-auto lg:h-80">
-            {/* بخش تصویر - چپ */}
             <div className="w-full lg:w-1/2 h-48 lg:h-full relative overflow-hidden">
               <div className="absolute inset-0 bg-gradient-to-br from-orange-500/20 to-pink-600/20 z-10"></div>
               <img
@@ -313,10 +299,8 @@ const DashboardPage = () => {
               />
             </div>
 
-            {/* بخش محتوا - راست */}
             <div className="w-full lg:w-1/2 p-5 flex flex-col justify-center items-center bg-gradient-to-br from-orange-50/50 to-pink-50/30">
               <div dir="rtl" className="w-full space-y-4">
-                {/* هدر */}
                 <div className="flex justify-start items-center mb-5">
                   <div className="rounded-xl p-2 mr-4 ml-2 border-2 border-orange-200 bg-gradient-to-br from-orange-100 to-pink-100 shadow-lg">
                     <BarChart3 className="w-5 h-5 text-orange-700" />
@@ -325,7 +309,6 @@ const DashboardPage = () => {
 
                 </div>
 
-                {/* آمار کاربران */}
                 <div className="bg-gradient-to-r from-blue-50 to-cyan-50 rounded-xl p-4 border border-blue-200/50 shadow-md hover:shadow-lg transition-all duration-300">
                   <div className="flex items-center justify-between">
                     <div className="flex items-center">
@@ -342,7 +325,6 @@ const DashboardPage = () => {
                   </div>
                 </div>
 
-                {/* آمار فروشگاه‌ها */}
                 <div className="bg-gradient-to-r from-purple-50 to-pink-50 rounded-xl p-4 border border-purple-200/50 shadow-md hover:shadow-lg transition-all duration-300">
                   <div className="flex items-center justify-between">
                     <div className="flex items-center">
@@ -364,12 +346,9 @@ const DashboardPage = () => {
             </div>
           </div>
         </div>
-        {/* کارت 3 - درآمد پروژه */}
         <div className="bg-gradient-to-br from-white/90 to-white/70 backdrop-blur-xl rounded-2xl shadow-xl border border-white/40 overflow-hidden hover:shadow-2xl transition-all duration-500">
           <div className="flex flex-col lg:flex-row h-auto lg:h-80">
-            {/* بخش محتوا - چپ */}
             <div dir='rtl' className="w-full lg:w-1/2 p-5 flex flex-col justify-center bg-gradient-to-br from-green-50/50 to-emerald-50/30">
-              {/* هدر */}
               <div className="flex justify-start items-center mb-4">
                 <div className="rounded-xl p-2 mr-4 ml-2 border-2 border-green-200 bg-gradient-to-br from-green-100 to-emerald-100 shadow-lg">
                   <TrendingUp className="w-5 h-5 text-green-700" />
@@ -378,7 +357,6 @@ const DashboardPage = () => {
 
               </div>
 
-              {/* درآمد کل */}
               <div className="bg-gradient-to-r from-green-100 to-emerald-100 p-4 rounded-xl shadow-md border border-green-200/50 mb-4">
                 <div className="text-center">
                   <div className="text-2xl font-bold text-green-700 mb-1">
@@ -388,7 +366,6 @@ const DashboardPage = () => {
                 </div>
               </div>
 
-              {/* تفکیک درآمد */}
               <div className="grid grid-cols-2 gap-3">
                 <div className="bg-gradient-to-r h-20 from-green-50 to-green-100/50 p-3 rounded-lg shadow border border-green-200/50 flex items-center">
                   <div className="flex items-center justify-between w-full">
@@ -423,7 +400,6 @@ const DashboardPage = () => {
                 </div>
               </div>
 
-              {/* درصد رشد */}
               <div className="mt-4 flex justify-center">
                 <div className="bg-gradient-to-r from-blue-100 to-blue-200 px-4 py-2 rounded-full shadow-md border border-blue-300/50">
                   <div className="flex items-center text-blue-700">
@@ -436,7 +412,6 @@ const DashboardPage = () => {
               </div>
             </div>
 
-            {/* بخش تصویر - راست */}
             <div className="w-full lg:w-1/2 h-48 lg:h-full relative overflow-hidden">
               <div className="absolute inset-0 bg-gradient-to-br from-green-500/20 to-emerald-600/20 z-10"></div>
               <img
@@ -449,7 +424,6 @@ const DashboardPage = () => {
         </div>
       </div>
 
-      {/* نمودار درآمد بهبود یافته */}
       <div className="mt-8 bg-gradient-to-br from-white/90 to-white/70 backdrop-blur-xl rounded-3xl p-8 shadow-2xl border border-white/40">
         <div className="flex items-center justify-end mb-8">
           <h2 className="text-2xl font-bold text-gray-800">
@@ -467,7 +441,6 @@ const DashboardPage = () => {
 
 
 
-// کامپوننت اصلی
 export default function Dashboard() {
   const [activeMenu, setActiveMenu] = useState('dashboard');
 

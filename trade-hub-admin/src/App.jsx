@@ -2,7 +2,6 @@ import { BrowserRouter, Routes, Route, Navigate } from "react-router-dom";
 import LoginPage from "./pages/LoginPage";
 import Dashboard from "./pages/Dashboard";
 
-// کامپوننت محافظت از مسیر
 const ProtectedRoute = ({ children }) => {
   const isAuthenticated = localStorage.getItem("admin");
   

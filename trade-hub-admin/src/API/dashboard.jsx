@@ -79,7 +79,7 @@ export const fetchMonthlyGrowth = async () => {
     },
   });
 
-  return response.data; // انتظار داریم فقط عدد درصد برگردونه، مثل: 12.5
+  return response.data; 
 };
 
 
@@ -94,5 +94,5 @@ export const fetchRevenueTrend = async () => {
     },
   });
 
-  return response.data; // شامل { labels: [...], values: [...] }
+  return response.data; 
 };

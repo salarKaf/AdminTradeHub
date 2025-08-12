@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import { User, Lock, Eye, EyeOff } from 'lucide-react';
 import { useNavigate } from "react-router-dom";
 import { loginAdmin } from "../API/auth.jsx";
-import { Loader2 } from 'lucide-react'; // آیکون لودر
+import { Loader2 } from 'lucide-react';
 
 const LoginPage = () => {
     const [email, setEmail] = useState('');
@@ -12,7 +12,7 @@ const LoginPage = () => {
 
     const [errorMessage, setErrorMessage] = useState('');
 
-    const [loading, setLoading] = useState(false); // اضافه کن بالا
+    const [loading, setLoading] = useState(false); 
 
     const handleSubmit = async (e) => {
         e.preventDefault();
@@ -38,7 +38,6 @@ const LoginPage = () => {
 
     return (
         <div className="min-h-screen flex items-center justify-center relative overflow-hidden">
-            {/* Background Image with Dark Overlay */}
             <div className="absolute inset-0 z-0">
                 <img
                     src="/Images/why-do-mountains-look-so-small-in-photos-v0-oc095cqy2fnd1 1.png" // مسیر تصویر پس‌زمینه شما
@@ -48,10 +47,8 @@ const LoginPage = () => {
                 <div className="absolute inset-0 bg-slate-900/90 z-10"></div>
             </div>
 
-            {/* Glass Morphism Form Container */}
             <div className="relative z-40 w-full max-w-lg p-8">
                 <div className="bg-white/10 backdrop-blur-sm border border-white/20 rounded-2xl p-8 shadow-2xl overflow-hidden">
-                    {/* Wave Pattern Inside Form (Top) */}
                     <div className="absolute top-0 left-0 right-0 h-20 opacity-30">
                         <svg
                             width="100%"
@@ -67,9 +64,7 @@ const LoginPage = () => {
                         </svg>
                     </div>
 
-                    {/* Form Content */}
                     <div className="relative z-50  mb-[140px]">
-                        {/* Logo and Title */}
                         <div className="text-center mb-16 mt-10">
                             <h1 className="text-3xl font-bold text-white mb-5">Trade Hub</h1>
                             <p className="text-gray-300 text-sm">
@@ -78,7 +73,6 @@ const LoginPage = () => {
                         </div>
 
                         <form onSubmit={handleSubmit} className="space-y-6 text-center">
-                            {/* Email Field */}
                             <div className="relative">
                                 <div className="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
                                     <User className="h-5 w-5 text-gray-300" />
@@ -93,7 +87,6 @@ const LoginPage = () => {
                                 />
                             </div>
 
-                            {/* Password Field */}
                             <div className="relative">
                                 <div className="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
                                     <Lock className="h-5 w-5 text-gray-300" />
@@ -125,7 +118,6 @@ const LoginPage = () => {
                                 </div>
                             )}
 
-                            {/* Login Button */}
                             <button
                                 type="submit"
                                 disabled={loading}
@@ -146,13 +138,12 @@ const LoginPage = () => {
 
 
                     </div>
-                    {/* Wave Pattern Below Form (Your Custom Image) */}
                     <div className="absolute bottom-0 left-0 right-0   z-10  ">
                         <img
                             src="/Images/layered-waves-haikei 1.png"
                             alt="Wave Pattern"
                             className="w-full opacity-70 object-cover"
-                            style={{ height: "100px" }} // اینو خودت می‌تونی تغییر بدی
+                            style={{ height: "100px" }} 
                         />
                     </div>
 
